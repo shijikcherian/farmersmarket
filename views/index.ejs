@@ -27,13 +27,13 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
     
   </head>
   <body>
-     <p>Welcome to <%= title %></p>
+    <p>Welcome to <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -44,28 +44,28 @@
 	       </button>
 	       <a class="brand" href="./index.ejs">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
-	            <ul class="nav">
-	              <li class="active"><a href="#">Home</a></li>
-	              <li><a href="produces.ejs">Buy</a></li>
-	              <li><a href="#about">Sell</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#contact">Contact</a></li>
-	              <li class="dropdown">
-	                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-	                <ul class="dropdown-menu">
-	                  <li><a href="#">Action</a></li>
-	                  <li><a href="#">Another action</a></li>
-	                  <li><a href="#">Something else here</a></li>
-	                  <li class="divider"></li>
-	                  <li class="nav-header">Nav header</li>
-	                  <li><a href="#">Separated link</a></li>
-	                  <li><a href="#">One more separated link</a></li>
-	                </ul>
-	              </li>
+	           <ul class="nav">
+		             <li class="active"><a href="#">Home</a></li>
+		             <li><a href="produces.ejs">Buy</a></li>
+		             <li><a href="#about">Sell</a></li>
+		             <li><a href="#about">About</a></li>
+		             <li><a href="#contact">Contact</a></li>
+		             <li class="dropdown">
+			             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+			             <ul class="dropdown-menu">
+			                 <li><a href="#">Action</a></li>
+			                 <li><a href="#">Another action</a></li>
+			                 <li><a href="#">Something else here</a></li>
+			                 <li class="divider"></li>
+			                 <li class="nav-header">Nav header</li>
+			                 <li><a href="#">Separated link</a></li>
+			                 <li><a href="#">One more separated link</a></li>
+			             </ul>
+		             </li>
 	            </ul>
-	            <form class="navbar-form pull-right">
-	              <input class="span2" placeholder="Email" type="text">
-	              <input class="span2" placeholder="Password" type="password">
+	            <form name="loginform" action="authenticate_user" method="post" class="navbar-form pull-right">
+	              <input class="span2" placeholder="Email" type="text" name="email">
+	              <input class="span2" placeholder="Password" type="password" name="passwd">
 	              <button type="submit" class="btn">Sign in</button>
 	            </form>
 	          </div><!--/.nav-collapse -->
@@ -73,14 +73,12 @@
 	        </div>
 	      </div>
 	    </div>
-	    
+
 	
-    <div class="container">	
-      
+    <div class="container">	      
       <div class="page-header">
 	    <img src="/bootstrap/img/heading-background1.jpg"/>
-      </div>
-	
+      </div>	
 	
 	  <!-- Example row of columns -->
 	     
@@ -88,18 +86,19 @@
       <div class="row">
         <div class="span2">      	  
             <ul class="nav nav-list">
-            <li class="nav-header">What we are?</li>
-            <li class="active"><a href="/index">Home</a></li>
-            <li><a href="#">Create Account</a></li>
-            <li class="divider"></li>    
-            <li><a href="/produces">Our Produces</a></li>
-            <li><a href="/farmers">Our Farmers</a></li>
-            <li class="divider"></li> 
-            <li><a href="#">Share</a></li>       
-          </ul>
+	            <li class="nav-header">What we are?</li>
+	            <li class="active"><a href="/index">Home</a></li> 
+	            <li><a href="/newuser">REGISTER</a></li>       
+	            <li class="divider"></li>    
+	            <li><a href="/produces">Our Produces</a></li>
+	            <li><a href="/farmers">Our Farmers</a></li>
+	            <li><a href="/staffpicks">Staff Picks</a></li>
+	            <li class="divider"></li> 
+	            <li><a href="#">Share</a></li>       
+            </ul>
         </div>
         <div class="span6">
-          <h2>Welcome to our Farmers Market</h2>
+          <h2>Welcome to our Farmers Market </h2>
           <p>With our web portal consumer will get access to fresh, nutritious, delicious, 
 environment friendly and healthier food for family available at their convenient location, 
 from their known source.</p>
@@ -115,35 +114,28 @@ from inventories located hundreds of miles away from store is also another point
           <p>Consumers can place an order for a product of their choice along with any delivery 
 charges incurred. Buyer can give the feedback on his experience which will be available for other consumers who are subscribed for some food item. 
 The system would recommend other purchases along with the items they choose. 
- A tweet feed of what items are available for sell can also be presented to all the users. </p>
-          
+ A tweet feed of what items are available for sell can also be presented to all the users. </p>       
           
        </div>
         <div class="span4">
-          <h2>Farm videos</h2>
-          <iframe width="300" height="169" src="//www.youtube.com/embed/-eM375RrC-g" frameborder="0" allowfullscreen></iframe>
-          <h2>Pick of the day</h2>
-         <ul class="thumbnails">
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="#">
-                  <img src="/bootstrap/img/beets.jpg"/>
-                </a>
-	            <h4>Beets:$.70 </h4>
-              </div><!-- .thumbnail -->
-	        </li><!--.span3 -->
-	      </div><!-- .thumbnails -->
-          <h2>Auction Items</h2>
-          <ul class="thumbnails">
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="#">
-                  <img src="/bootstrap/img/tomato.jpg"/>
-                </a>
-	            <h4>Tomato</h4>
-              </div><!-- .thumbnail -->
-	        </li><!--.span3 -->
-	      </div><!-- .thumbnails -->
+          <h2>Steps to Quality Food...</h2>
+          <hr>
+          <h3>1. Browse our website...</h3>
+          <hr>
+          <h3>2. Meet our producer and his farms ...</h3>
+          <hr>
+          <h3>3. Convince yourselves through their photos and videos...</h3>
+          <hr>
+          <h3>4. Place your order online...</h3>
+          <hr>           
+          <h3>5. Receive your delivery at home/work...</h3>          
+         
+            
+	    </div><!-- .class span4 -->
+         
+          
+            
+	  </div><!-- .class span6 -->
        
       <hr>
 
@@ -156,19 +148,9 @@ The system would recommend other purchases along with the items they choose.
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Bootstrap,%20from%20Twitter_files/jquery.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-transition.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-alert.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-modal.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tab.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-popover.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-button.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-collapse.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-carousel.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-typeahead.js"></script>
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    
 
   
   </body>
