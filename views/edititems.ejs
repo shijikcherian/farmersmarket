@@ -102,8 +102,26 @@
 			    			<th>Enter item details:</th>			    				
 		    			 </tr>       	
 		        </thead>			
-		        <tbody>	       
+		        <tbody>	
+                  <tr>  
+                      <td colspan="2">
+                          <img src=<%= itemimage %> />
+                          <h4> <%= itemid %> <h4> 
+                      </td>  
+                              
+                  </tr>         
 	          		<tr> 
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">file upload</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="file" class="input-small" id="email" name="logoImage" value= <%=itemimage%> placeholder="Display Logo Image">
+                                  </div>
+                                </div>
+                            </div>  
+                         </td>
 	          			<td> 		        	      
 						    <div class="control-group">
 					          <label class="control-label">Item Name</label>
@@ -116,21 +134,12 @@
 						    </div>
 						  </td>
 						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">file upload</label>
-							    <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="file" class="input-small" id="email" name="logoImage" value= <%=itemimage%> placeholder="Display Logo Image">
-							      </div>
-							    </div>
-						  	</div>	
-						 </td>
+
 					</tr>  
+
 	          		 
 	          		<tr> 
-	          			<td> 		        	      
+	          			<td> 	
 						    <div class="control-group">
 					          <label class="control-label">Item Description</label>
 						        <div class="controls">

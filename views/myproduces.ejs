@@ -73,10 +73,9 @@
       <div class="row">
         <div class="span2">      	  
             <ul class="nav nav-list">
-            <li class="nav-header">Signed In as: </li>
-            <li><%=username %> <%=lastname %></li>
+            <li class="nav-header">What we are?</li>
             <li><a href="/">Home</a></li>
-            <li><a href="/logout">Logout</a></li>  
+            <li><a href="#">Create Account</a></li>
             <li class="divider"></li>    
             <li class="active"><a href="/produces">Our Produces</a></li>
             <li><a href="/farmers">Our Farmers</a></li>
@@ -88,55 +87,25 @@
           <h2>Welcome to our Farmers Market</h2>          
           <b>Our staff picks <b>
          <ul class="thumbnails">
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item1name %>">
-                  <img src=<%= item1image %> />
-                </a>
-	            <h4> <%= item1name %> </h4>
-              </div<!-- .thumbnail -->
-	        </li><!--.span3 -->
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item2name %>">
-                  <img src=<%= item2image %> />
-                </a>
-	            <h4> <%= item2name %> </h4>
-              </div<!-- .thumbnail -->
-	        </li><!--.span3 -->
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item3name %>">
-                  <img src=<%= item3image %> />
-                </a>
-	            <h4> <%= item3name %> </h4>
-              </div<!-- .thumbnail -->              
-	        </li><!--.span3 -->
-	        <li class="divider"></li> 
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item4name %>">
-                  <img src=<%= item4image %> />
-                </a>
-	            <h4> <%= item4name %> </h4>
-              </div<!-- .thumbnail -->
-	        </li><!--.span3 -->
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item5name %>">
-                  <img src=<%= item5image %> />
-                </a>
-	            <h4> <%= item5name %> </h4>
-	          </div<!-- .thumbnail -->
-	        </li><!--.span3 -->
-            <li class="span3">
-	          <div class ="thumbnail">
- 	            <a href="/staffpickitem/<%= item6name %>">
-                  <img src=<%= item6image %> />
-                </a>
-	            <h4> <%= item6name %> </h4>
-              </div><!-- .thumbnail -->
-	        </li><!--.span3 -->
+            <h2 <%= title %> /h2>		    
+		    <% var rows = itemcount/3 %>
+		    <table>
+		    <% for(var i=0; i<rows; i++) { %>
+		        <tr>
+		    	<% for(var j=0; j<3; j++) { %>
+		    		<% if ((i*3+j) < itemcount) { %>
+		        		<td>
+		 	            <a href="/myproduces/<%= itemids[i*3+j] %>">
+		                  <img src=<%= itemimages[i*3+j] %> />
+		                </a>
+						<h4> <%= itemids[i*3+j] %> </h4>		                
+		                </td>
+		    		<% } %>
+		    	<% } %>
+		        </tr>
+		    <% } %>
+		    </table>
+		    
 	    </div><!--/.span10 -->       
       </div><!--/.row -->      
        

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title><%= title %></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -85,7 +85,7 @@
           </ul>
         </div><!--/.span2 -->
         <div class="span6">
-		  <form name="buyform<%=itemname%>" id="buyform<%=itemname%>" action="buy_item" method="post" >
+		  <form name="buyform<%=itemid%>" id="buyform<%=itemid%>" action="delete_item"method="post" >
 			<h2>Welcome to <%= farmname %></h2>
 			<p><%= description %></p>			
 	  
@@ -93,7 +93,10 @@
 				      
 		        <tbody> 
 		          <tr>  
-		            <td  colspan="2"><img src=<%= itemimage %> /><h4> <%= attachmentName %> <h4> </td>  
+		              <td colspan="2">
+    		              <img src=<%= itemimage %> />
+    		              <h4> <%= itemid %> <h4> 
+		              </td>  
 		    	              
 		          </tr>  
 	         
@@ -110,21 +113,15 @@
 		            <td><%= bestby %></td>  
 		          </tr> 
 		          <tr>
-		          	 <td > 		            	
-		            	 <select name="quant" id="quant" >
-					        <option value="1">1</option>
-					        <option value="2">2</option>
-					        <option value="3">3</option>
-					        <option value="4">4</option>
-					        <option value="5">5</option>
-        				 </select>
-        			 </td>
+
         			 <td>
 					     <div class="control-group">
 					      <label class="control-label"></label>
 				          <div class="controls">
-				          	<input type="hidden" name="itemid" value="<%=attachmentName%>"/>
-				            <button type="submit" class="btn btn-success" >Buy!</button>
+				          	<input type="hidden" name="itemid" value="<%=itemid%>"/>
+				          	
+				            <button type="submit" class="btn btn-danger" name="action" value="delete">DELETE!</button>
+                            <button type="submit" class="btn btn-success" name="action" value="update">UPDATE!</button>				            
 				          </div>
 				        </div>						  
 					 </td>		 
