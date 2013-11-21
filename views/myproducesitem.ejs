@@ -44,7 +44,7 @@
 	            <span class="icon-bar"></span>
 	       </button>
 	       <a class="brand" href="#">Virtual Farmers Market</a>
-	         <div class="nav-collapse collapse">
+	       <div class="nav-collapse collapse">
 	            <ul class="nav">
 	              <li class="active"><a href="/index">Home</a></li>
 	              <li><a href="#about">Buy</a></li>
@@ -54,11 +54,11 @@
 	              <li class = "pull-right"> <a href="/logout">logout</a></li>
 	            </ul>
 	 
-	          </div><!--/.nav-collapse -->
+	        </div><!--/.nav-collapse -->
 
-	        </div><!--/.container -->
-	      </div><!--/.navbar-inner -->
-	    </div><!--/.navbar navbar-inverse navbar-fixed-top -->
+	    </div><!--/.container -->
+	 </div><!--/.navbar-inner -->
+   </div><!--/.navbar navbar-inverse navbar-fixed-top -->
 	    
 	
     <div class="container">	
@@ -73,7 +73,7 @@
 	     
       <div class="row">
         <div class="span2">      	  
-            <ul class="nav nav-list">
+          <ul class="nav nav-list">
             <li class="nav-header">What we are?</li>
             <li><a href="/">Home</a></li>
             <li><a href="#">Create Account</a></li>
@@ -87,61 +87,83 @@
         <div class="span6">
 		  <form name="buyform<%=itemid%>" id="buyform<%=itemid%>" action="delete_item"method="post" >
 			<h2>Welcome to <%= farmname %></h2>
-			<p><%= description %></p>			
-	  
-			<table class="table"> 
+			<p><%= description %></p>		
+
+				
+            <div class="table-responsive">
+          
+			  <table class="table table-condensed"> 
 				      
 		        <tbody> 
 		          <tr>  
-		              <td colspan="2">
+		              <td >
     		              <img src=<%= itemimage %> />
     		              <h4> <%= itemid %> <h4> 
 		              </td>  
 		    	              
 		          </tr>  
+                  <tr>  
+                    <td ><%= description %> </td> 
+                  </tr>  
 	         
 		          <tr>  
-		            <td>Per Pack:</td>  
-		            <td><%= perpack %> </td>  
-		            <td>Unit Price</td>  
-		            <td><%= unitprice %></td>  
+		            <th width ="10%">Per Pack:</th>  
+		            <td ><%= perpack %> </td>  
+		            <th >Unit Price</th>  
+		            <td ><%= unitprice %></td>
 		          </tr>  
 		          <tr>  
-		            <td>In Stock:</td>  
-		            <td><%= instock %></td>  
-		            <td>Best By:</td>  
-		            <td><%= bestby %></td>  
+		            <th >In Stock:</th>  
+		            <td ><%= instock %></td>  
+		            <th >Best By:</th>  
+		            <td ><%= bestby %></td>  
 		          </tr> 
+                  <tr>  
+                    <th >Item Type:</th>  
+                    <td ><%= itemtype %></td>  
+                    <th >Add Date:</td>  
+                    <td ><%= adddate %></td>  
+                  </tr> 
+                  <tr>  
+                    <th >Farm Name:</td>  
+                    <td ><%= farmname %></td>  
+                    <th >Tag List:</td>  
+                    <td ><%= taglist %></td>  
+                  </tr> 
 		          <tr>
 
         			 <td>
-					     <div class="control-group">
-					      <label class="control-label"></label>
-				          <div class="controls">
+					     
 				          	<input type="hidden" name="itemid" value="<%=itemid%>"/>
-				          	
+				       </td>
+				          <td>	
 				            <button type="submit" class="btn btn-danger" name="action" value="delete">DELETE!</button>
+				           </td>
+				           <td> 
+				            
                             <button type="submit" class="btn btn-success" name="action" value="update">UPDATE!</button>				            
-				          </div>
-				        </div>						  
+				         					  
 					 </td>		 
 		          </tr>
 		        </tbody>  
       		</table>  
-       </div>
+      	
+          </div>  <!-- /table responsive -->
+       </div><!-- /span6 -->
         <div class="span4">
           <h2>Our recipe.....</h2>
           <iframe width="350" height="300" src=<%= videolink1 %> frameborder="0" allowfullscreen></iframe>
           <h2>Our farm....</h2>
           <iframe width="350" height="300" src=<%= videolink2 %> frameborder="0" allowfullscreen></iframe>
-	    </div><!-- .thumbnails -->
-       
-      <hr>
-
+	    </div><!-- .span4 -->
+      </form>  
+        <hr>
+ 
       <footer>
         <p>© SJSU Fall 2013</p>
       </footer>
-
+    
+        </div><!-- /row -->
     </div> <!-- /container -->
 
     <!-- Le javascript

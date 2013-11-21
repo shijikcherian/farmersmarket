@@ -495,11 +495,13 @@ exports.myproduces= function(req, res){
 	});
 	db.view('farmer/item', function (err, doc){
 		var data = {title:'Farmers Market -My Produces'};
+		console.log("I am in view of farmeritem");
 		data.itemimages = [];
 		data.itemids = [];
 		for (var item in doc) {	 
 			if (doc[item].value.idfarmer == req.session.cfid) {
 				console.log("docvalue"+doc[item].value.idfarmer);
+				console.log(doc);
 				console.log("cfude"+req.session.cfid);	
 				for (var attachmentName in doc[item].value._attachments) {
 					console.log("attachmentname:"+attachmentName);
@@ -516,9 +518,9 @@ exports.myproduces= function(req, res){
 };//exports
 	//show details of each item 
 exports.myproducesitem=function(req,res){
-	console.log("I am in myproduceitem");	
-	var videolink1 = "//www.youtube.com/embed/ycpdGbFH1Js";
-	var videolink2 = "//www.youtube.com/embed/ycpdGbFH1Js";
+	console.log("I am in myproduceitem");
+	var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
+	var videolink2 = "//www.youtube.com/embed/nPh1S2bN4C8";
 	var itemid= req.param("itemid");
 	var attachmentName = "";
 	console.log("itemid:"+ itemid);
@@ -536,8 +538,10 @@ exports.myproducesitem=function(req,res){
 				videolink1 = doc.videolink1;
 			if ((doc.videolink2 !== "") && (doc.videolink2 !== undefined))
 				videolink2 = doc.videolink2;
+
 			var data = {title:'Farmers Market - Our staffpicked items', 
 				'adddate':doc.adddate,
+				'itemtype':doc.itemtype,
 				'bestby':doc.bestby, 
 				'farmname':doc.farmname,
 				'perpack':doc.perpack,
@@ -548,7 +552,7 @@ exports.myproducesitem=function(req,res){
 				'description':doc.description,
 				'farmcode':doc.farmcode,
 				'itemname':doc.itemname,
-				'itemtag':doc.itemtag,
+				'taglist':doc.taglist,
 				'videolink1':videolink1,
 				'videolink2':videolink2
 			};
@@ -616,10 +620,13 @@ exports.delete_item=function(req, res) {
 		console.log("i am in update");
 		console.log("sessionid:" + req.session.cfid);	
 		console.log("itemid" + req.body.itemid);
-		var itemid= req.body.itemid;	
-		db.get(itemid, function (err, doc) {
+		itemid1= req.body.itemid;
+		var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
+		var videolink2 = "//www.youtube.com/embed/nPh1S2bN4C8";
+		
+		db.get(itemid1, function (err, doc) {
 			sys.puts(doc);
-			console.log("type:"+ req.body.type);
+			console.log("itemtype:"+ doc.itemtype);
 			if (err === null) {
 				for (var thisattachmentName in doc._attachments) {
 					attachmentName = thisattachmentName;
@@ -627,8 +634,15 @@ exports.delete_item=function(req, res) {
 				console.log("attachmentname:" + attachmentName);
 				console.log("ocid"+doc.id);
 				itemimage = 'http://localhost:5984/farmersmarket/'+doc.id+'/'+attachmentName;
+
+				if ((doc.videolink1 !== "") && (doc.videolink1 !== undefined))
+					videolink1 = doc.videolink1;
+				if ((doc.videolink2 !== "") && (doc.videolink2 !== undefined))
+					videolink2 = doc.videolink2;
+				console.log("vieolink1"+videolink1);
+				console.log("vieolink2"+videolink2);
 				var data = {title:'Farmers Market - Our staffpicked items', 
-					'type':doc.type,
+					'itemtype':doc.itemtype,
 					'adddate':doc.adddate,
 					'bestby':doc.bestby, 
 					'farmname':doc.farmname,
@@ -640,21 +654,24 @@ exports.delete_item=function(req, res) {
 					'description':doc.description,
 					'farmcode':doc.farmcode,
 					'itemname':doc.itemname,
-					'itemtag':doc.itemtag,
+					'taglist':doc.taglist,
 					'videolink1':doc.videolink1,
 					'videolink2':doc.videolink2
 				};
-				res.render('edititems',data);
+				res.render('updateitem',data);
 			}
 		});
 	}
 
 };
 //handler for uploading items
-exports.update_item= function(req, res){
-	console.log("I am in update item");
+exports.updateitem= function(req, res){
+	console.log("I am in update items post handler");
 	console.log("farmerid" + req.session.cfid);
+	
 	var adddate= req.param("adddate"); 
+	
+	var itemtype=req.param("itemtype");
 	var bestby=req.param("bestby"); 
 	var description=req.param("description"); 
 	var farmname=req.param("farmname");
@@ -665,13 +682,15 @@ exports.update_item= function(req, res){
 	var unitprice= req.param("unitprice"); 
 	var videolink1=req.param("videolink1"); 
 	var videolink2=req.param("videolink2"); 
-	//var logoimage=req.param("logoimage");
-	//var itemtype= req.param("itemtype"); 
+	var itemimage1=req.param("itemimage1");
+	console.log("itemimage1in one:"+itemimage1);
+	var itemtype= req.param("itemtype"); 
 	var idfarmer= req.session.cfid;
 	var itemid=idfarmer +'_'+ itemname;
+	console.log("itemimage1"+itemimage1);
 	
 	db.save(itemid,{
-				type: 'itemtype',
+				itemtype: itemtype,
 				adddate: adddate,
 				bestby: bestby,
 				description: description,     
@@ -699,6 +718,9 @@ exports.update_item= function(req, res){
 						var filename = req.files.logoImage.name; 
 						var filePath = req.files.logoImage.path;
 						var readStream = fs.createReadStream(filePath);
+						//console.log("filename"+filename);
+						//console.log("filepath"+filepath);
+						console.log("itemimage1"+itemimage1);
 						console.log("my readstream");
 						console.log(readStream);
 						//streaming the upload
@@ -723,10 +745,17 @@ exports.update_item= function(req, res){
 						readStream.pipe(writeStream);		
 						console.log("everything success");
 						res.send( {success: true} );
+
 				}
+
 	}); 
-	res.redirect('/uploaditemsuccess');
+	res.redirect('/myproduces');
 };
+
+exports.updateitemsuccess= function(req, res){	
+	res.render('updateitemsuccess',{title:'Farmers Market - Item uploaded successfully. Want to add more......'});
+	res.send('Look ma, no HTML!');
+	};
 
 //handler for uploading items
 exports.uploaditems_post_handler= function(req, res){
@@ -744,12 +773,12 @@ exports.uploaditems_post_handler= function(req, res){
 	var videolink1=req.param("videolink1"); 
 	var videolink2=req.param("videolink2"); 
 	//var logoimage=req.param("logoimage");
-	//var itemtype= req.param("itemtype"); 
+	var itemtype= req.param("itemtype"); 
 	var idfarmer= req.session.cfid;
 	var itemid=idfarmer +'_'+ itemname;
 	
 	db.save(itemid,{
-				type: 'itemtype',
+				
 				adddate: adddate,
 				bestby: bestby,
 				description: description,     
@@ -757,6 +786,7 @@ exports.uploaditems_post_handler= function(req, res){
 				instock: instock,
 				itemname:itemname,
 				idfarmer:idfarmer,
+				itemtype: itemtype,
 				taglist:taglist,
 				perpack:perpack,
 				unitprice:unitprice,
@@ -803,7 +833,7 @@ exports.uploaditems_post_handler= function(req, res){
 						res.send( {success: true} );
 				}
 	}); 
-	res.redirect('/uploaditemsuccess');
+	res.redirect('/myproduces');
 };
 
 exports.uploaditemsuccess= function(req, res){	

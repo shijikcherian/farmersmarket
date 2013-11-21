@@ -73,7 +73,8 @@ app.get('/myproduces/:itemid', market.myproducesitem);
 app.post('/myproduces/delete_item', market.delete_item);
 //app.get('/myproduces/deleteitemsuccess',market.deleteitemsuccess);
 
-app.post('/myproduces/edititems', market.update_item);
+app.post('/myproduces/updateitem', market.updateitem);
+app.get('/myproduces/updateitemsuccess', market.updateitemsuccess);
 
 
 
