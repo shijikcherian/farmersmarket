@@ -45,11 +45,12 @@
 	       <a class="brand" href="#">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li class="active"><a href="/index">Home</a></li>
-	              <li><a href="buy">Buy</a></li>
-	              <li><a href="#about">Sell</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#contact">Contact</a></li>
+	              <li class="active"><a href="/welcomefarmer">Home</a></li>
+	              <li><a href="/myproduces">My Produces</a></li>
+	              <li><a href="/uploaditems">Sell</a></li>
+ 
+	
+	              <li><a href="/welcomefarmer" rel="tooltip" title=HELLO" id="blah"><%= session.username %><%= session.lastname %></a></li>
 	              <li class = "pull-right"> <a href="/logout">logout</a></li>
 	              
 	            </ul> 
@@ -73,19 +74,19 @@
         <div class="span2">      	  
             <ul class="nav nav-list">
 	            <li class="nav-header">What we are?</li>
-	            <li class="active"><a href="/index">Home</a></li> 
+	            <li class="active"><a href="/>Home</a></li> 
 	            <li><a href="/logout">Logout</a></li>       
 	            <li class="divider"></li>    
 	            <li><a href="/myproduces">My Produces</a></li>
-	            <li><a href="/farmers">Our Farmers</a></li>
+	
 	            <li><a href="/uploaditems">Upload items</a></li>	            
-	            <li><a href="/staffpicks">Customer Picks</a></li>
+
 	            <li class="divider"></li> 
 	            <li><a href="#">Share</a></li>       
             </ul>
         </div>
         <div class="span6">
-          <h2>Welcome <%= session.username %> <%= session.lastname %> to our Farmers Market </h2>
+          <h2>Hello <%= session.username %> <%= session.lastname %> </h2>
           <p>With our web portal consumer will get access to fresh, nutritious, delicious, 
 environment friendly and healthier food for family available at their convenient location, 
 from their known source.</p>
@@ -135,19 +136,10 @@ The system would recommend other purchases along with the items they choose.
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Bootstrap,%20from%20Twitter_files/jquery.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-transition.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-alert.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-modal.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tab.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-popover.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-button.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-collapse.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-carousel.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-typeahead.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    
 
   
   </body>

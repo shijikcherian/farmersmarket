@@ -34,7 +34,7 @@
   </head>
   <body>
 
-    <p>Welcome to <%= title %></p>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -46,11 +46,7 @@
 	       <a class="brand" href="#">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li class="active"><a href="/index">Home</a></li>
-	              <li><a href="#about">Buy</a></li>
-	              <li><a href="#about">Sell</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#contact">Contact</a></li>
+	              <li class="active"><a href="/">Home</a></li>
 	              <li class = "pull-right"> <a href="/logout">logout</a></li>
 	            </ul>
 	 
@@ -77,16 +73,14 @@
             <li class="nav-header">What we are?</li>
             <li><a href="/">Home</a></li>
             <li><a href="#">Create Account</a></li>
-            <li class="divider"></li>    
-            <li class="active"><a href="/produces">Our Produces</a></li>
-            <li><a href="/farmers">Our Farmers</a></li>
+ 
             <li class="divider"></li> 
             <li><a href="#">Share</a></li>       
           </ul>
         </div><!--/.span2 -->
         <div class="span6">
 		  <form name="buyform<%=itemname%>" id="buyform<%=itemname%>" action="buy_item" method="post" >
-			<h2>Welcome to <%= farmname %></h2>
+			<h2><%= farmname %></h2>
 			<p><%= description %></p>			
 	  
 			<table class="table"> 
@@ -101,7 +95,7 @@
 		            <td>Per Pack:</td>  
 		            <td><%= perpack %> </td>  
 		            <td>Unit Price</td>  
-		            <td><%= unitprice %></td>  
+		            <td>$<%= unitprice %></td>  
 		          </tr>  
 		          <tr>  
 		            <td>In Stock:</td>  

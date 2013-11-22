@@ -15,7 +15,7 @@ var fs = require('fs');
 //handler for index page
 exports.index = function(req, res){	
 	console.log("index"+req.session);
-	res.render('index', { title: 'Virtual Farmers Market',sess:req.session });		
+	res.render('index', { title: ' Farmers Market',sess:req.session });		
 };
 
 //handler for displaying the new user form
@@ -233,7 +233,7 @@ exports.staffpicks= function(req, res){
 	});
 	db.view('logo/all', function (err, doc){
 
-		var data = {title:'Farmers Market - Our staffpicked items'};
+		var data = {title:' Today at the market'};
 		data.itemimages = [];
 		data.itemnames = [];
 		
@@ -251,35 +251,132 @@ exports.staffpicks= function(req, res){
 	});
 };
 
+exports.myproduces= function(req, res){	 
+	console.log("I am in myproduces"); 
+	console.log("sessionusername" + req.session.username);
+	console.log("sessionlastname" + req.session.lastname);
+	console.log("cfid"+ req.session.cfid);
+
+	//var itemnames = [];
+	//var itemimages = [];
+	var itemcount = 0;
+
+	//var idfarmer = '34';
+  
+	db.save('_design/farmer', {
+		item: {
+			map: function (doc) {
+				if  (doc.idfarmer )emit(doc._id, doc); 
+			}
+		}
+	});
+	db.view('farmer/item', function (err, doc){
+		var data = {title:'Farmers Market -My Produces'};
+		console.log("I am in view of farmeritem");
+		data.itemimages = [];
+		data.itemids = [];
+		for (var item in doc) {	 
+			if (doc[item].value.idfarmer == req.session.cfid) {
+				console.log("docvalue"+doc[item].value.idfarmer);
+				console.log(doc);
+				console.log("cfude"+req.session.cfid);	
+				for (var attachmentName in doc[item].value._attachments) {
+					console.log("attachmentname:"+attachmentName);
+					data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
+					data.itemids.push(doc[item].id);
+					itemcount = itemcount+1;
+				}
+			}//if
+		}//for
+		data.itemcount = itemcount;
+		console.log("itemcount"+itemcount);
+		res.render('myproduces',data);
+	});//dbview
+};//exports
+
 exports.staffpickitem=function(req,res){
 	console.log("I am in staffpickitems");
+	var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
+	var videolink2 = "//www.youtube.com/embed/nPh1S2bN4C8";
 	var name1 = req.param("itemid");
 	console.log("itemid" + name1);
 	var name = req.param("itemname");	
 	console.log("itemname"+name);
-	db.get(name, function (err, doc) { 
-		for (var name in doc._attachments) {
-			attachmentName = name;	
+	db.get(name, function (err, doc) {
+		if (err === null) {
+			for (var name in doc._attachments) {
+				attachmentName = name;	
+			}
+			console.log(attachmentName);
+			itemimage = 'http://localhost:5984/farmersmarket/'+doc.id+'/'+attachmentName;
+			if ((doc.videolink1 !== "") && (doc.videolink1 !== undefined))
+				videolink1 = doc.videolink1;
+			if ((doc.videolink2 !== "") && (doc.videolink2 !== undefined))
+				videolink2 = doc.videolink2;
+
+			var data = {title:'Farmers Market - Our staffpicked items', 
+				'adddate':doc.adddate,
+				'bestby':doc.bestby, 
+				'farmname':doc.farmname,
+				'perpack':doc.perpack,
+				'unitprice':doc.unitprice,
+				'instock':doc.instock,
+				'itemimage':itemimage,
+				'attachmentName':doc.id,
+				'description':doc.description,
+				'farmcode':doc.farmcode,
+				'itemname':doc.itemname,
+				'itemtag':doc.itemtag,
+				'videolink1':videolink1,
+				'videolink2':videolink2	
+			};
+			res.render('staffpickitem',data);    
+		}//if errot = null
+	}); 
+};
+
+//show details of each item 
+exports.myproducesitem=function(req,res){
+	console.log("I am in myproduceitem");
+	var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
+	var videolink2 = "//www.youtube.com/embed/nPh1S2bN4C8";
+	var itemid= req.param("itemid");
+	var attachmentName = "";
+	console.log("itemid:"+ itemid);
+	db.get(itemid, function (err, doc) {
+		console.log("err:"+err);
+		console.log("doc:"+doc);
+		if (err === null) {
+			for (var thisattachmentName in doc._attachments) {
+				attachmentName = thisattachmentName;
+			}
+			console.log("attachmentname:" + attachmentName);
+			console.log("ocid"+doc.id);
+			itemimage = 'http://localhost:5984/farmersmarket/'+doc.id+'/'+attachmentName;
+			if ((doc.videolink1 !== "") && (doc.videolink1 !== undefined))
+				videolink1 = doc.videolink1;
+			if ((doc.videolink2 !== "") && (doc.videolink2 !== undefined))
+				videolink2 = doc.videolink2;
+
+			var data = {title:'Farmers Market - Our staffpicked items', 
+				'adddate':doc.adddate,
+				'itemtype':doc.itemtype,
+				'bestby':doc.bestby, 
+				'farmname':doc.farmname,
+				'perpack':doc.perpack,
+				'unitprice':doc.unitprice,
+				'instock':doc.instock,
+				'itemimage':itemimage,
+				'itemid':doc.id,
+				'description':doc.description,
+				'farmcode':doc.farmcode,
+				'itemname':doc.itemname,
+				'taglist':doc.taglist,
+				'videolink1':videolink1,
+				'videolink2':videolink2
+			};
+			res.render('myproducesitem',data);
 		}
-		console.log(attachmentName);
-		itemimage = 'http://localhost:5984/farmersmarket/'+doc.id+'/'+attachmentName;
-		var data = {title:'Farmers Market - Our staffpicked items', 
-			'adddate':doc.adddate,
-			'bestby':doc.bestby, 
-			'farmname':doc.farmname,
-			'perpack':doc.perpack,
-			'unitprice':doc.unitprice,
-			'instock':doc.instock,
-			'itemimage':itemimage,
-			'attachmentName':doc.id,
-			'description':doc.description,
-			'farmcode':doc.farmcode,
-			'itemname':doc.itemname,
-			'itemtag':doc.itemtag,
-			'videolink1':doc.videolink1,
-			'videolink2':doc.videolink2	
-		};
-		res.render('staffpickitem',data);    
 	}); 
 };
 //show item of farmer logged in
@@ -474,92 +571,8 @@ exports.transactionsuccess= function(req, res){
 	res.redirect('/staffpickitem');
 };
 
-exports.myproduces= function(req, res){	 
-	console.log("I am in myproduces"); 
-	console.log("sessionusername" + req.session.username);
-	console.log("sessionlastname" + req.session.lastname);
-	console.log("cfid"+ req.session.cfid);
 
-	//var itemnames = [];
-	//var itemimages = [];
-	var itemcount = 0;
 
-	//var idfarmer = '34';
-  
-	db.save('_design/farmer', {
-		item: {
-			map: function (doc) {
-				if  (doc.idfarmer )emit(doc._id, doc); 
-			}
-		}
-	});
-	db.view('farmer/item', function (err, doc){
-		var data = {title:'Farmers Market -My Produces'};
-		console.log("I am in view of farmeritem");
-		data.itemimages = [];
-		data.itemids = [];
-		for (var item in doc) {	 
-			if (doc[item].value.idfarmer == req.session.cfid) {
-				console.log("docvalue"+doc[item].value.idfarmer);
-				console.log(doc);
-				console.log("cfude"+req.session.cfid);	
-				for (var attachmentName in doc[item].value._attachments) {
-					console.log("attachmentname:"+attachmentName);
-					data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
-					data.itemids.push(doc[item].id);
-					itemcount = itemcount+1;
-				}
-			}//if
-		}//for
-		data.itemcount = itemcount;
-		console.log("itemcount"+itemcount);
-		res.render('myproduces',data);
-	});//dbview
-};//exports
-	//show details of each item 
-exports.myproducesitem=function(req,res){
-	console.log("I am in myproduceitem");
-	var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
-	var videolink2 = "//www.youtube.com/embed/nPh1S2bN4C8";
-	var itemid= req.param("itemid");
-	var attachmentName = "";
-	console.log("itemid:"+ itemid);
-	db.get(itemid, function (err, doc) {
-		console.log("err:"+err);
-		console.log("doc:"+doc);
-		if (err === null) {
-			for (var thisattachmentName in doc._attachments) {
-				attachmentName = thisattachmentName;
-			}
-			console.log("attachmentname:" + attachmentName);
-			console.log("ocid"+doc.id);
-			itemimage = 'http://localhost:5984/farmersmarket/'+doc.id+'/'+attachmentName;
-			if ((doc.videolink1 !== "") && (doc.videolink1 !== undefined))
-				videolink1 = doc.videolink1;
-			if ((doc.videolink2 !== "") && (doc.videolink2 !== undefined))
-				videolink2 = doc.videolink2;
-
-			var data = {title:'Farmers Market - Our staffpicked items', 
-				'adddate':doc.adddate,
-				'itemtype':doc.itemtype,
-				'bestby':doc.bestby, 
-				'farmname':doc.farmname,
-				'perpack':doc.perpack,
-				'unitprice':doc.unitprice,
-				'instock':doc.instock,
-				'itemimage':itemimage,
-				'itemid':doc.id,
-				'description':doc.description,
-				'farmcode':doc.farmcode,
-				'itemname':doc.itemname,
-				'taglist':doc.taglist,
-				'videolink1':videolink1,
-				'videolink2':videolink2
-			};
-			res.render('myproducesitem',data);
-		}
-	}); 
-};
 //delete item by farer
 exports.delete_item=function(req, res) {
 	console.log("delete item post method");

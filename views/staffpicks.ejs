@@ -33,7 +33,7 @@
     
   </head>
   <body>
-     <p>Welcome to <%= title %></p>
+     <p> <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -42,14 +42,12 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	       </button>
-	       <a class="brand" href="#">Virtual Farmers Market</a>
+	       <a class="brand" href="/staffpicks">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li class="active"><a href="/index">Home</a></li>
-	              <li><a href="#about">Buy</a></li>
-	              <li><a href="#about">Sell</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#contact">Contact</a></li>
+	              <li class="active"><a href="/">Home</a></li>
+	              
+	              <li><a id="alertMe" href="#">Buy</a></li>
 	              <li class = "pull-right"> <a href="/logout">logout</a></li>
 	            </ul>
 	            
@@ -76,16 +74,13 @@
             <li class="nav-header">What we are?</li>
             <li><a href="/">Home</a></li>
             <li><a href="#">Create Account</a></li>
-            <li class="divider"></li>    
-            <li class="active"><a href="/produces">Our Produces</a></li>
-            <li><a href="/farmers">Our Farmers</a></li>
+ 
             <li class="divider"></li> 
             <li><a href="#">Share</a></li>       
           </ul>
         </div><!--/.span2 -->
         <div class="span10">
-          <h2>Welcome to our Farmers Market</h2>          
-          <b>Our staff picks <b>
+          <h2>Today at the market....</h2>          
          <ul class="thumbnails">
             <h2 <%= title %> /h2>		    
 		    <% var rows = itemcount/3 %>
@@ -121,19 +116,8 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Bootstrap,%20from%20Twitter_files/jquery.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-transition.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-alert.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-modal.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tab.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-popover.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-button.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-collapse.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-carousel.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-typeahead.js"></script>
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 
   
   </body>
