@@ -9787,11 +9787,3 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }
 
 })( window );
-
-$('#alertMe').click(function(e) {
-    alert('Please chose an item  below');
-    e.preventDefault();// prevent the default anchor functionality
-});
-$(document).ready(function(){
-    $("[rel=tooltip]").tooltip({ placement: 'right'});
-});

@@ -227,11 +227,14 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #333333;
+  
+  background-image:url('../img/fruits-background.jpg');
+  background-repeat:repeat;  
   background-color: #ffffff;
 }
 
 a {
-  color: #0088cc;
+  color: green;
   text-decoration: none;
 }
 
@@ -289,7 +292,7 @@ a:focus {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 1449px;
 }
 
 .span12 {
@@ -4007,7 +4010,7 @@ input[type="submit"].btn.btn-mini {
 .nav-list > .active > a:focus {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background-color: #0088cc;
+  background-color: green;
 }
 
 .nav-list [class^="icon-"],
