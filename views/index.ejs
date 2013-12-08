@@ -39,7 +39,7 @@
     
   </head>
   <body>
-    <p>Join our <%= title %></p>
+    <p> <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -52,11 +52,11 @@
 	         <div class="nav-collapse collapse">
 	           <ul class="nav">
 		             <li class="active"><a href="#">Home</a></li>
-		             <li><a href="/staffpicks">Buy</a></li>
+	                 <li><a id="alertMe" href="#">Buy</a></li>
 
 	            </ul>
 	            <form name="loginform" action="authenticate_user" method="post" class="navbar-form pull-middle">
-	              <input class="span2" placeholder="Email" type="text" name="email" this.value="" required="required" >
+	              <input class="span2" placeholder="Email" type="text" name="email" this.value="" required="required"onblur="validateEmail(this);" >
 	              <input class="span2" placeholder="Password" type="password" name="passwd" required="required" email: true >
 	              <button type="submit" class="btn">Sign in</button>
 	            </form>
@@ -88,12 +88,12 @@
         <div class="span1">      	  
             <ul class="nav nav-list">
 	            <li class="nav-header">What we are?</li>
-	            <li class="active"><a href="/">Home</a></li> 
-	            <li><a href="/newuser">REGISTER</a></li>       
+
+	     
 	            <li class="divider"></li>    
-	            <li><a href="/staffpicks">Our Produces</a></li>
+                <li class="active"><a href="/">Home</a></li> 
 	            <li class="divider"></li> 
-	            <li><a href="#">Share</a></li>       
+       <li><a href="/newuser">REGISTER</a></li>       
             </ul>
         </div>
         <div class="span10">
@@ -123,33 +123,39 @@
 		<h3> Holiday Special! </h3>		
 		<div class="product span3" >
 	        <% var rows = data1.itemcount/3 %>
-	        <% for(var i=0; i<rows; i++) { %>
-                <% for(var j=0; j<3; j++) { %>
-                    <% if ((i*3+j) < data1.itemcount) { %>
- 
-		  	<div class="image" id= "dhover2">
-		      		<img src=<%= data1.itemimages[i*3+j] %> height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-		  	</div>    
-		  	<div class="contenthover">
-			  <p><%= data1.itemtypes[i*3+j] %>
-			  <br/>
-			  <a>$<%=data1.unitprices[i*3+j] %></a> 
-			  </p>
-		  
-		  	</div>  
+	        <table>
+    	        <% for(var i=0; i<rows; i++) { %>
+                <tr>
+                    <% for(var j=0; j<3; j++) { %>
+                        <% if ((i*3+j) < data1.itemcount) { %>
+                        <td>
+                <% var index = i*3+j %>
+                <% var hoverid = "dhover2-"+index %>
+                <div class="image" id= <%= hoverid %> >
+    		      		<img src=<%= data1.itemimages[index] %> height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
+    		  	</div>    
+    		  	<div class="contenthover">
+    			  <p><%= data1.itemtypes[index] %>
+    			  <br/>
+    			  <a>$<%=data1.unitprices[index] %></a> 
+    			  </p>
+    		  
+    		  	</div>  
+    
+    			<script>
+                $('#<%= hoverid %>').contenthover({
+    			    overlay_background:'#032b01',
+    			    overlay_opacity:0.9,
+    			    overlay_width:210
+    			});
+    			</script>
+    		    </td>  	
+                        <% } %>
 
-			<script>
-			$('#dhover2').contenthover({
-			    overlay_background:'#032b01',
-			    overlay_opacity:0.9,
-			    overlay_width:210
-			});
-			</script>	
                     <% } %>
-                <% } %>
-               
-            <% } %>					  
-				       
+                  </tr>                                
+                <% } %>					  
+	       </table>			       
 		</div><!-- .product span3 -->       	
 
 	
@@ -160,32 +166,40 @@
 	  		
 		<div class="product span3">
             <% var rows = data2.itemcount/3 %>
+            <table>
             <% for(var i=0; i<rows; i++) { %>
+            <tr>
                 <% for(var j=0; j<3; j++) { %>
                     <% if ((i*3+j) < data2.itemcount) { %>
- 
-            <div class="image" id= "dhover3">
-                    <img src=<%= data2.itemimages[i*3+j] %> height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-            </div>    
-            <div class="contenthover">
-              <p><%= data2.itemtypes[i*3+j] %>
-              <br/>
-              <a>$<%=data2.unitprices[i*3+j] %></a> 
-              </p>
-          
-            </div>  
-
-            <script>
-            $('#dhover3').contenthover({
-                overlay_background:'#032b01',
-                overlay_opacity:0.9,
-                overlay_width:210
-            });
-            </script>   
+                    <td>
+                        <% var index = i*3+j %>
+                        <% var hoverid = "dhover"+index %>
+                        <div class="image" id= <%= hoverid %> >
+                                <img src=<%= data2.itemimages[index] %> height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
+                        </div>    
+                        <div class="contenthover">
+                          <p><%= data2.itemtypes[index] %>
+                          <br/>
+                          <a>$<%=data2.unitprices[index] %></a> 
+                          </p>
+                      
+                        </div>  
+            
+                        <script>
+                        
+                        $('#<%= hoverid %>').contenthover({
+                            overlay_background:'#032b01',
+                            overlay_opacity:0.9,
+                            overlay_width:210
+                        });
+                        </script>
+                </td>     
                     <% } %>
+ 
                 <% } %>
-               
+               </tr>            
             <% } %>     
+       </table>
 		</div>
 
 
@@ -325,7 +339,9 @@
      $('.slider').tilesSlider('start');
   </script>   
 
-
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
          
 
   

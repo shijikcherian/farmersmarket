@@ -51,15 +51,11 @@
 	       <a class="brand" href="/">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
 	           <ul class="nav">
-		             <li class="active"><a href="#">Home</a></li>
-		             <li><a href="/staffpicks">Buy</a></li>
+		             <li class="active"><a href="/">Home</a></li>
+
 
 	            </ul>
-	            <form name="loginform" action="authenticate_user" method="post" class="navbar-form pull-middle">
-	              <input class="span2" placeholder="Email" type="text" name="email" this.value="" required="required" >
-	              <input class="span2" placeholder="Password" type="password" name="passwd" required="required" email: true >
-	              <button type="submit" class="btn">Sign in</button>
-	            </form>
+
 	          </div><!--/.nav-collapse -->
 
 	        </div>
@@ -85,490 +81,48 @@
 	     
 	     
       <div class="row">
-        <div class="span1">      	  
+        <div class="span2">      	  
             <ul class="nav nav-list">
 	            <li class="nav-header">What we are?</li>
 	            <li class="active"><a href="/">Home</a></li> 
-	            <li><a href="/newuser">REGISTER</a></li>       
+	            <li>Support your local farmers & build a stronger community</a></li>       
 	            <li class="divider"></li>    
-	            <li><a href="/staffpicks">Our Produces</a></li>
-	            <li class="divider"></li> 
-	            <li><a href="#">Share</a></li>       
+       
             </ul>
         </div>
-        <div class="span10">
-  
-	 <br> <br>			
-	 <div class="products">
-		<style>
-			.contenthover p{
-			    color:white;
-			    font-weight:bold;
-			    font-size:20px;
-			    text-align:center;
-			    margin-top:15px;
-			}
+        <div class="span8">
+    <!-- create a new user -->
 
-			.contenthover a{
-				display:block; 
-				padding:15px 15px; 
-				background:#3c9632; 
-				color:#fff;
-				position:absolute;
-				bottom:0;
-				width:85.5%;	            
-		    	text-decoration:none;
-			 }
-		</style>
-		<h3> Holiday Special! </h3>		
-		<div class="product span3" >
-	        <% var rows = itemcount/3 %>
-	        <% for(var i=0; i<rows; i++) { %>
-                <% for(var j=0; j<3; j++) { %>
-                    <% if ((i*3+j) < itemcount) { %>
- 
-		  	<div class="image" id= "dhover2">
-		      		<img src=<%= itemimages[i*3+j] %> height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-		  	</div>    
-		  	<div class="contenthover">
-			  <p><%= itemtypes[i*3+j] %>
-			  <br/>
-			  <a>$<%=unitprices[i*3+j] %></a> 
-			  </p>
-		  
-		  	</div>  
+<form action="registeruser" method="post" >
+      <h3>Please enter the following information about you:</h3>
+      My name: <input type="text" name="fname" id="fname" placeholder="FirstName" required="required"><br>
+      Last name: <input type="text" name="lname"placeholder="LastName" required="required"><br>
+      Username or email: <input type="text" name="userid" placeholder="UserName/Email" required="required"><br>
+      Choose password: <input type="password" name="passwd" placeholder="password" required="required"><br>
+      Enter your emailid: <input type="text" name="email"placeholder="Email"this.value="" required="required"onblur="validateEmail(this);" ><br>
+      Are you : <select name="custorfarmer" required="required">
+      <option value="customer" selected>a customer</option>
+      <option value="farmer">a farmer</option>
+      </select>
+      <br><br><br>
+      <script type="text/javascript"
+       src="http://www.google.com/recaptcha/api/challenge?k=6LffFOgSAAAAAH9F39d2qTVyHoNs60KvtEl1iKTD">
+      </script>
+      <noscript>
+         <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LffFOgSAAAAAH9F39d2qTVyHoNs60KvtEl1iKTD"
+             height="300" width="500" frameborder="0"></iframe><br>
+         <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+         </textarea>
+         <input type="hidden" name="recaptcha_response_field"
+             value="manual_challenge">
+      </noscript>
+      <input type="submit" value="submit">
+      <input type="button" value="cancel" onclick="window.location.href = '/'">
+              
+ </form>
 
-			<script>
-			$('#dhover2').contenthover({
-			    overlay_background:'#032b01',
-			    overlay_opacity:0.9,
-			    overlay_width:210
-			});
-			</script>	
-                    <% } %>
-                <% } %>
-                </tr>
-            <% } %>					  
-				       
-		</div><!-- .product span3 -->
-	        	
-
-	
-		<div style="clear:both;"></div> <br> <br>
-		<hr/>
-
-		<h3> Other delicious products </h3>
-	  		
-		<div class="product span3">
-
-			  <div class="image" id="dhover4">
-			      <img src="/bootstrap/img/strawberry.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div> 
-			  <div class="contenthover">
-				  <p>Organic Strawberry
-				  <br/>
-				  <a>$9.99</a> 
-				  </p>
-			  
-			  </div>  
-			<script>
-				$('#dhover4').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-			</script>	      
-		</div>
-		<div class="product span3">
-
-			  <div class="image" id="dhover5">
-			      <img src="/bootstrap/img/peach.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>   
-			  <div class="contenthover">
-				  <p>Organic Peach
-				  <br/>
-				  <a>$10.99</a> 
-				  </p>
-			  
-			  </div>  
-			 <script>
-				$('#dhover5').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-			</script>    
-		</div>
-	
-		<div class="product span3">
-
-		  <div class="image" id="dhover6">
-		      <img src="/bootstrap/img/beets.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-		  </div>       
-		  <div class="contenthover">
-			  <p>Organic Beets
-			  <br/>
-			  <a>$4.99</a> 
-			  </p>
-		  
-		  </div>  
-		  <script>
-			$('#dhover6').contenthover({
-			    overlay_background:'#032b01',
-			    overlay_opacity:0.9,
-			    overlay_width:210
-			});
-		 </script>
-		</div>
-		<div style="clear:both;"></div> <br> <br>
-		<div class="product span3" >
-
-			  <div class="image" id="dhover7">
-			      <img src="/bootstrap/img/fruitsofseason.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>   
-			  <div class="contenthover">
-				  <p> Assorted oranges, peaches and apples
-				  <br/>
-				  <a>$14.99</a> 
-				  </p>
-			  
-			  </div>  
-      				<script>
-					$('#dhover7').contenthover({
-					    overlay_background:'#032b01',
-					    overlay_opacity:0.9,
-					    overlay_width:210
-					});
-     				 </script>    
-		</div>
-	
-						
-		<div class="product span3">
-
-			  <div class="image" id="dhover8">
-			      <img src="/bootstrap/img/apple-betty.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>   
-			  <div class="contenthover">
-				  <p>Handmade Yummy! Apple-Betty
-				  <br/>
-				  <a>$12.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover8').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-     			 </script>      
-		</div>
-				
-		<div class="product span3">
-
-			  <div class="image" id="dhover9">
-			      <img src="/bootstrap/img/cabbage.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			   <div class="contenthover">
-				  <p>Organic Cabbage
-				  <br/>
-				  <a>$3.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover9').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>   
-		</div>
-	        	
-	        <div style="clear:both;"></div> <br> <br>
-
-		<div class="product span3">
-
-			  <div class="image" id="dhover10">
-			      <img src="/bootstrap/img/carrots.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>   
-			   <div class="contenthover">
-				  <p>Organic Carrots
-				  <br/>
-				  <a>$4.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover10').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>       
-		</div>
-
-						
-		<div class="product span3">
-
-			  <div class="image" id="dhover11">
-			      <img src="/bootstrap/img/PumpkinPie.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			   <div class="contenthover">
-				  <p>Mom made gourmet pumkin pie
-				  <br/>
-				  <a>$12.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover11').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>   
-		</div>
-		
-		<div class="product span3">
-
-			  <div class="image" id="dhover12">
-			      <img src="/bootstrap/img/MurcottMandarin.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			  
-			   <div class="contenthover">
-				  <p>Organic Juicy Mandarin 
-				  <br/>
-				  <a>$13.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover12').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>   
-		</div>
-	        	
-	        <div style="clear:both;"></div> <br> <br>
-	
-		<div class="product span3">
-
-			  <div class="image" id="dhover13">
-			      <img src="/bootstrap/img/RicottaCheese.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			  
-			   <div class="contenthover">
-				  <p>Sinfully delicious Ricotta Cheese
-				  <br/>
-				  <a>$15.99</a> 
-				  </p>
-			  
-			  </div>  
-      				<script>
-					$('#dhover13').contenthover({
-					    overlay_background:'#032b01',
-					    overlay_opacity:0.9,
-					    overlay_width:210
-					});
-      				</script>   
-		</div>
-	
-						
-		<div class="product span3">
-
-			  <div class="image" id="dhover14">
-			      <img src="/bootstrap/img/ShepherdsPie.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			  
-			  <div class="contenthover">
-				  <p>Home-made Shepherds Pie
-				  <br/>
-				  <a>$12.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover14').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>  
-			  
-		</div>
-		
-		<div class="product span3">
-
-			  <div class="image" id="dhover15">
-			      <img src="/bootstrap/img/AppleCrisp.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-			  </div>       
-			  
-			  <div class="contenthover">
-				  <p>Home-made Shepherds Pie
-				  <br/>
-				  <a>$12.99</a> 
-				  </p>
-			  
-			  </div>  
-      			<script>
-				$('#dhover15').contenthover({
-				    overlay_background:'#032b01',
-				    overlay_opacity:0.9,
-				    overlay_width:210
-				});
-      			</script>  
-			  
-		</div>
-	        		<div style="clear:both;"></div> <br> <br>
-	
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover16">
-					      <img src="/bootstrap/img/nuts.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>       
-					  
-					  <div class="contenthover">
-						  <p>Our speciality - Assorted nuts
-						  <br/>
-						  <a>$29.99</a> 
-						  </p>
-					  
-					  </div>  
-                      				<script>
-							$('#dhover16').contenthover({
-							    overlay_background:'#032b01',
-							    overlay_opacity:0.9,
-							    overlay_width:210
-							});
-                      				</script>  
-	        		</div>
-	
-								
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover17">
-					      <img src="/bootstrap/img/apple_oranges.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>       
-					  
-					  <div class="contenthover">
-						  <p>Mix of juicy delicious Apples and Oranges!
-						  <br/>
-						  <a>$16.99</a> 
-						  </p>
-					  
-					  </div>  
-                      			<script>
-						$('#dhover17').contenthover({
-						    overlay_background:'#032b01',
-						    overlay_opacity:0.9,
-						    overlay_width:210
-						});
-                      			</script>  
-	        		</div>
-				
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover18">
-					      <img src="/bootstrap/img/FastShepherdsPie.jpg" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>       
-					  
-					  <div class="contenthover">
-						  <p>Home-made Hot Shepherds Pie
-						  <br/>
-						  <a>$12.99</a> 
-						  </p>
-					  
-					  </div>  
-                      			<script>
-						$('#dhover18').contenthover({
-						    overlay_background:'#032b01',
-						    overlay_opacity:0.9,
-						    overlay_width:210
-						});
-                      			</script>    
-	        		</div>
-	
-				<div style="clear:both;"></div> <br> <br>
-	
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover19">
-					      <img src="/bootstrap/img/green-tea1.png" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>       
-					  
-					  <div class="contenthover">
-						  <p>Natural organic jasmine tea!
-						  <br/>
-						  <a>$17.99</a> 
-						  </p>
-					  
-					  </div>  
-                      			<script>
-						$('#dhover19').contenthover({
-						    overlay_background:'#032b01',
-						    overlay_opacity:0.9,
-						    overlay_width:210
-						});
-                      			</script>  
-	        		</div>
-	
-								
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover20">
-					      <img src="/bootstrap/img/green-tea2.png" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>       
-					  
-					  <div class="contenthover">
-						  <p>Smooth black tea!
-						  <br/>
-						  <a>$13.99</a> 
-						  </p>
-					  
-					  </div>  
-                      			<script>
-						$('#dhover20').contenthover({
-						    overlay_background:'#032b01',
-						    overlay_opacity:0.9,
-						    overlay_width:210
-						});
-                      			</script>  
-	        		</div>
-				
-				<div class="product span3">
-	  
-	 				  <div class="image" id="dhover21">
-					      <img src="/bootstrap/img/green-tea3.png" height="200" width="200" alt="" style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"style="border: 5px solid green"/>
-					  </div>   
-					  
-					  <div class="contenthover">
-						  <p>Blissful and healthy green tea!
-						  <br/>
-						  <a>$8.99</a> 
-						  </p>
-					  
-					  </div>  
-                      			<script>
-						$('#dhover21').contenthover({
-						    overlay_background:'#032b01',
-						    overlay_opacity:0.9,
-						    overlay_width:210
-						});
-                      			</script>
-					      
-	        		</div>
-	        		        	        		        	
-			
-
-	</div><!-- .class products -->
-
-   
-          
-       </div><!-- .class span8 -->
-        <div class="span1">
+       </div><!-- .class span10 -->
+        <div class="span2">
                 
                 <a href="https://twitter.com/VFM_SJSU" class="twitter-follow-button"
                 data-show-count="false" data-lang="en" data-size="large">

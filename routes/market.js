@@ -263,7 +263,95 @@ exports.welcomefarmer = function(req, res){
 	console.log("farmerid" + req.session.cfid);
 	console.log("username"+req.session.username);
 	if(typeof req.session.username !=  'undefined') {
-		res.render('welcomefarmer', { title: 'Virtual Farmers Market - Welcome' , session:req.session});
+		var fulldata = {title:' Today at the market'};
+		console.log("reqsession"+req.session);
+		var itemcount = 0;
+		season="Christmas";
+		db.save('_design/farmer', {
+			season: {
+				map: function (doc) {
+					if  (doc.taglist )emit(doc._id, doc); 
+				}
+			}
+		});
+		db.view('farmer/season', function (err, doc){
+			console.log("1/2 err = "+err);
+			console.log("I am in view of index");
+			var data = {title:' Today at the market'};
+			data.itemimages = [];
+			data.itemnames = [];
+			data.itemtypes=[];
+			data.unitprices=[];
+			
+			for (var item in doc) {
+				console.log("I am in item in doc");
+				for (var attachmentName in doc[item].value._attachments) {
+					console.log(attachmentName);
+					data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
+					console.log("itemimageid:"+ doc[item].id);
+					data.itemtypes.push(doc[item].value.itemtype);
+					console.log("itemtype"+ doc[item].value.itemtype);
+					data.itemnames.push(doc[item].itemname);
+					console.log("itemitemname"+ doc[item].value.itemname);
+					data.unitprices.push(doc[item].value.unitprice);
+					console.log("unitprice"+ doc[item].value.unitprice);
+					itemcount = itemcount+1;
+				}
+			}
+			data.itemcount = itemcount;
+			console.log("itemcount"+itemcount);
+			console.log("doc"+doc);
+			//res.render('index',data);
+			fulldata.data1 = data;
+			//res.render('index', { title: ' Farmers Market',sess:req.session });	
+			//other items
+			db.save('_design/taglist', {
+				allitems: {
+					map: function (doc2) {
+						if (doc2.taglist !=='Christmas')  emit(doc2._id, doc2); 
+					}
+				}
+			});
+			
+
+			itemcount = 0;
+			db.view('taglist/allitems', function (err, doc2){
+				console.log("2/2 err = ",err);
+				console.log("I am in view of index- otheritem");
+				var data1 = {title:' Today at the market'};
+				data1.itemimages = [];
+				data1.itemnames = [];
+				data1.itemtypes=[];
+				data1.unitprices=[];
+				
+				for (var item in doc2) {
+					console.log("I am in item in doc of other items");
+					for (var attachmentName in doc2[item].value._attachments) {
+						console.log(attachmentName);
+						data1.itemimages.push('http://localhost:5984/farmersmarket/'+doc2[item].id+'/'+attachmentName);
+						console.log("itemimageid:"+ doc2[item].id);
+						data1.itemtypes.push(doc2[item].value.itemtype);
+						console.log("itemtype"+ doc2[item].value.itemtype);
+						data1.itemnames.push(doc2[item].itemname);
+						console.log("itemitemname"+ doc2[item].value.itemname);
+						data1.unitprices.push(doc2[item].value.unitprice);
+						console.log("unitprice"+ doc2[item].value.unitprice);
+						itemcount = itemcount+1;
+					}
+				}
+				data1.itemcount = itemcount;
+				console.log("itemcount"+itemcount);
+				console.log("doc"+doc2);
+				fulldata.data2 = data1;
+				console.log("fulldata:"+fulldata);
+				
+				res.render('welcomefarmer',{title: ' Farmers Market',fulldata:fulldata,session:req.session});
+				//res.render('index', { title: ' Farmers Market',sess:req.session });	
+			});//dbview
+		});//dbview
+
+
+		//res.render('welcomefarmer', { title: 'Virtual Farmers Market' , session:req.session});
 	}
 	else{
 		res.redirect('/');
@@ -273,7 +361,7 @@ exports.welcomefarmer = function(req, res){
 exports.welcomecustomer = function(req, res){
 	console.log("I am in welcome customer");	
 	if(typeof req.session.username !=  'undefined') {
-		res.render('welcomefarmer', { title: 'Virtual Farmers Market - Welcome' , session:req.session});
+		res.render('welcomefarmer', { title: 'Virtual Farmers Market ' , session:req.session});
 	}
 	else{
 		res.redirect('/');
@@ -282,8 +370,94 @@ exports.welcomecustomer = function(req, res){
 };
 //handler for displaying error in authentication
 exports.autherror=function(req,res){
-	
-	res.render('error',{title:'Farmers Market - Error'});
+	var fulldata = {title:' Today at the market'};
+	console.log("reqsession"+req.session);
+	var itemcount = 0;
+	season="Christmas";
+	db.save('_design/farmer', {
+		season: {
+			map: function (doc) {
+				if  (doc.taglist )emit(doc._id, doc); 
+			}
+		}
+	});
+	db.view('farmer/season', function (err, doc){
+		console.log("1/2 err = "+err);
+		console.log("I am in view of index");
+		var data = {title:' Today at the market'};
+		data.itemimages = [];
+		data.itemnames = [];
+		data.itemtypes=[];
+		data.unitprices=[];
+		
+		for (var item in doc) {
+			console.log("I am in item in doc");
+			for (var attachmentName in doc[item].value._attachments) {
+				console.log(attachmentName);
+				data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
+				console.log("itemimageid:"+ doc[item].id);
+				data.itemtypes.push(doc[item].value.itemtype);
+				console.log("itemtype"+ doc[item].value.itemtype);
+				data.itemnames.push(doc[item].itemname);
+				console.log("itemitemname"+ doc[item].value.itemname);
+				data.unitprices.push(doc[item].value.unitprice);
+				console.log("unitprice"+ doc[item].value.unitprice);
+				itemcount = itemcount+1;
+			}
+		}
+		data.itemcount = itemcount;
+		console.log("itemcount"+itemcount);
+		console.log("doc"+doc);
+		//res.render('index',data);
+		fulldata.data1 = data;
+		//res.render('index', { title: ' Farmers Market',sess:req.session });	
+		//other items
+		db.save('_design/taglist', {
+			allitems: {
+				map: function (doc2) {
+					if (doc2.taglist !=='Christmas')  emit(doc2._id, doc2); 
+				}
+			}
+		});
+		
+
+		itemcount = 0;
+		db.view('taglist/allitems', function (err, doc2){
+			console.log("2/2 err = ",err);
+			console.log("I am in view of index- otheritem");
+			var data1 = {title:' Today at the market'};
+			data1.itemimages = [];
+			data1.itemnames = [];
+			data1.itemtypes=[];
+			data1.unitprices=[];
+			
+			for (var item in doc2) {
+				console.log("I am in item in doc of other items");
+				for (var attachmentName in doc2[item].value._attachments) {
+					console.log(attachmentName);
+					data1.itemimages.push('http://localhost:5984/farmersmarket/'+doc2[item].id+'/'+attachmentName);
+					console.log("itemimageid:"+ doc2[item].id);
+					data1.itemtypes.push(doc2[item].value.itemtype);
+					console.log("itemtype"+ doc2[item].value.itemtype);
+					data1.itemnames.push(doc2[item].itemname);
+					console.log("itemitemname"+ doc2[item].value.itemname);
+					data1.unitprices.push(doc2[item].value.unitprice);
+					console.log("unitprice"+ doc2[item].value.unitprice);
+					itemcount = itemcount+1;
+				}
+			}
+			data1.itemcount = itemcount;
+			console.log("itemcount"+itemcount);
+			console.log("doc"+doc2);
+			fulldata.data2 = data1;
+			console.log("fulldata:"+fulldata);
+			res.render('error',fulldata);
+			//res.render('error',{title:'Farmers Market - Error',fulldata:fulldata});
+			//res.render('index', { title: ' Farmers Market',sess:req.session });	
+		});//dbview
+	});//dbview
+		
+	//res.render('error',{title:'Farmers Market - Error'});
 	
 };
 
@@ -357,29 +531,36 @@ exports.myproduces= function(req, res){
 		}
 	});
 	db.view('farmer/item', function (err, doc){
-		var data = {title:'Farmers Market -My Produces'};
-		console.log("I am in view of farmeritem");
-		data.itemimages = [];
-		data.itemids = [];
-		for (var item in doc) {	 
-			if (doc[item].value.idfarmer == req.session.cfid) {
-				console.log("docvalue"+doc[item].value.idfarmer);
-				console.log(doc);
-				console.log("cfude"+req.session.cfid);	
-				for (var attachmentName in doc[item].value._attachments) {
-					console.log("attachmentname:"+attachmentName);
-					data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
-					data.itemids.push(doc[item].id);
-					itemcount = itemcount+1;
-				}
-			}//if
-		}//for
-		data.itemcount = itemcount;
-		console.log("itemcount"+itemcount);
-		res.render('myproduces',data);
-	});//dbview
+		if (err === null) {	
+			var data = {title:'Farmers Market -My Produces'};
+			console.log("I am in view of farmeritem");
+			data.itemimages = [];
+			data.itemids = [];
+			for (var item in doc) {
+				console.log("doc[item].value.idfarmer:"+doc[item].value.idfarmer);
+				console.log("req.session.cfid:"+req.session.cfid);
+	
+				if (doc[item].value.idfarmer == req.session.cfid) {
+					console.log("i am inside item in doc");
+					console.log("docvalue:"+doc[item].value.idfarmer);
+					console.log("doc:"+doc);
+					console.log("cfude:"+req.session.cfid);	
+					for (var attachmentName in doc[item].value._attachments) {
+						console.log("attachmentname:"+attachmentName);
+						data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
+						data.itemids.push(doc[item].id);
+						itemcount = itemcount+1;
+					}
+				}//if
+			}//for
+			data.itemcount = itemcount;
+			console.log("itemcount"+itemcount);
+			res.render('myproduces',{title: ' Farmers Market',data:data,session:req.session});
+		}else{
+			console.log("err");
+		}
+		});//dbview
 };//exports
-
 exports.staffpickitem=function(req,res){
 	console.log("I am in staffpickitems");
 	var videolink1 = "//www.youtube.com/embed/pRGZNR6erhQ";
@@ -461,12 +642,11 @@ exports.myproducesitem=function(req,res){
 				'videolink1':videolink1,
 				'videolink2':videolink2
 			};
-			res.render('myproducesitem',data);
+			res.render('myproducesitem',{title: ' Farmers Market',data:data,session:req.session});
 		}
 	}); 
 };
 //show item of farmer logged in
-
 
 exports.buy_item=function(req, res) {
 	var itemid='';

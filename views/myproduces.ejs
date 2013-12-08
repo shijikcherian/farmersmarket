@@ -11,6 +11,7 @@
 
     <!-- Le styles -->
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/jquery.tiles.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -27,13 +28,18 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>    
+    <script src="/bootstrap/js/jquery.tiles.min.js"></script>
+    <script src="/bootstrap/js/jquery.snow.min.js"></script>
+    <script src="/bootstrap/js/jquery.contenthover.js"></script>
     
   </head>
   <body>
-     <p>Welcome to <%= title %></p>
+    <p>Join our <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -42,74 +48,122 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	       </button>
-	       <a class="brand" href="#">Virtual Farmers Market</a>
+	       <a class="brand" href="/">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
-	            <ul class="nav">
-	              <li class="active"><a href="/index">Home</a></li>
-	              <li><a href="#about">Buy</a></li>
-	              <li><a href="#about">Sell</a></li>
-	              <li><a href="#about">About</a></li>
-	              <li><a href="#contact">Contact</a></li>
-	              <li class = "pull-right"> <a href="/logout">logout</a></li>
+	           <ul class="nav">
+                  <li class="active"><a href="/welcomefarmer">Home</a></li>
+                  <li><a href="/myproduces">My Produces</a></li>
+                  <li><a href="/uploaditems">Sell</a></li>
+ 
+    
+                  <li><a href="/welcomefarmer" rel="tooltip" title=HELLO" id="blah"><%= session.username %><%= session.lastname %></a></li>
+                  <li class = "pull-right"> <a href="/logout">logout</a></li>
+
 	            </ul>
-	            
+
 	          </div><!--/.nav-collapse -->
 
-	        </div><!--/.container -->
-	      </div><!--/.navbar-inner -->
-	    </div><!--/.navbar navbar-inverse navbar-fixed-top -->
-	    
+	        </div>
+	      </div>
+	    </div>
+
 	
-    <div class="container">	
-      
-      <div class="page-header">
-	    <img src="/bootstrap/img/heading-background1.jpg"/>
-      </div><!--/.pageheader -->
-	
+    <div class="container">	      
+      <div class="page-header" style="height:468px;">
+	<div class="slider-wrap" style="max-height:468px;" >
+		<div class="slider" style="max-height:468px;">
+    		<img src="/bootstrap/img/IMG4.jpg"  />
+			<img src="/bootstrap/img/IMG5.jpg"/>
+    		<img src="/bootstrap/img/IMG3.jpg"/>
+			<img src="/bootstrap/img/IMG2.jpg"/>
+			<img src="/bootstrap/img/IMG1.jpg"/>
+			<img src="/bootstrap/img/IMG6.jpg"/>
+		</div>
+	</div>
+      </div>	
 	
 	  <!-- Example row of columns -->
 	     
 	     
       <div class="row">
-        <div class="span2">      	  
+        <div class="span2">           
             <ul class="nav nav-list">
-            <li class="nav-header">What we are?</li>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Create Account</a></li>
-            <li class="divider"></li>    
-            <li class="active"><a href="/produces">Our Produces</a></li>
-            <li><a href="/farmers">Our Farmers</a></li>
-            <li class="divider"></li> 
-            <li><a href="#">Share</a></li>       
-          </ul>
-        </div><!--/.span2 -->
+                <li class="nav-header">Feast of Artisans</li>
+                  <li class="active"><a href="/welcomefarmer">Home</a></li>
+
+                <li class="divider"></li>    
+                <li><a href="/myproduces">My Produces</a></li>
+    
+                <li><a href="/uploaditems">Upload items</a></li>                
+
+                <li class="divider"></li> 
+                <li><a href="/logout">Logout</a></li>       
+            </ul>
+        </div>
         <div class="span10">
           <h2>Welcome to our Farmers Market</h2>          
           <b>Our staff picks <b>
          <ul class="thumbnails">
-            <h2 <%= title %> /h2>		    
-		    <% var rows = itemcount/3 %>
-		    <table>
-		    <% for(var i=0; i<rows; i++) { %>
-		        <tr>
-		    	<% for(var j=0; j<3; j++) { %>
-		    		<% if ((i*3+j) < itemcount) { %>
-		        		<td>
-		 	            <a href="/myproduces/<%= itemids[i*3+j] %>">
-		                  <img src=<%= itemimages[i*3+j] %> />
-		                </a>
-						<h4> <%= itemids[i*3+j] %> </h4>		                
-		                </td>
-		    		<% } %>
-		    	<% } %>
-		        </tr>
-		    <% } %>
-		    </table>
-		    
-	    </div><!--/.span10 -->       
-      </div><!--/.row -->      
-       
+            <h2 <%= data.title %> /h2>          
+            <% var rows = data.itemcount/3 %>
+            <table>
+            <% for(var i=0; i<rows; i++) { %>
+                <tr>
+                <% for(var j=0; j<3; j++) { %>
+                    <% if ((i*3+j) < data.itemcount) { %>
+                        <td>
+                        <a href="/myproduces/<%= data.itemids[i*3+j] %>">
+                          <img src=<%= data.itemimages[i*3+j] %> />
+                        </a>
+                        <h4> <%= data.itemids[i*3+j] %> </h4>                       
+                        </td>
+                    <% } %>
+                <% } %>
+                </tr>
+            <% } %>
+            </table>
+   
+          
+       </div><!-- .class span8 -->
+        <div class="span2">
+                
+                <a href="https://twitter.com/VFM_SJSU" class="twitter-follow-button"
+                data-show-count="false" data-lang="en" data-size="large">
+                Follow @VFM_SJSU</a>
 
+                <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+                    if(!d.getElementById(id)){js=d.createElement(s);
+                    js.id=id;
+                    js.src="//platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                </script>
+                
+                <br> <br>
+                
+                <a class="twitter-timeline" 
+                 href="https://twitter.com/search?q=%23vfm_sjsu"
+                 data-widget-id="398569442738581504">Tweets about "#vfm_sjsu"</a>
+                <script>
+                    !function(d,s,id){
+                    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                    if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src=p+"://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                </script>
+ 
+          <hr>           
+ 
+         
+            
+	    </div><!-- .class span4 -->
+         
+          
+            
+	  </div><!-- .class== row -->
+       
       <hr>
 
       <footer>
@@ -120,20 +174,92 @@
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Bootstrap,%20from%20Twitter_files/jquery.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-transition.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-alert.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-modal.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tab.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-popover.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-button.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-collapse.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-carousel.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-typeahead.js"></script>
+ 
+ <script>
+	$(document).ready(function($) {
+	$('body').snowing(options);
+	});
+
+	//possible parameters and their default values:
+	var options = {
+	minSize : 30, //minimum size of single flake
+	maxSize : 60, //maximum size of single flake
+	minOpacity : 0.3, //minimum opacity of single flake (0-1 values range)
+	maxOpacity : 1, //maximum opacity of single flake (0-1 values range)
+	intensity : 10, //intensity of snowing (higher -> more intense)
+	meltingTime : 5, //time after which flakes disappear (higher -> later)
+	flakeColors : ["#AAFFAA", "#AAAAFF", "#CCCCFF"], //array of possible colors that flakes randomly take
+	flakeChars : ['&#10052;', '&#10053;', '&#10054;'] //array of possible unicode characters codes that flakes randomly take
+	};
+</script>    
+<script>
+
+      var $slider = $('.slider-wrap');
+      var html = $slider.html();
+
+      // Options
+
+      var defaults = {
+        thumbSize: 20,
+        onSlideshowEnd: function(){ $('.stop, .start').toggle() }
+      };
+
+      var effects = {
+        'default': { x:6, y:4, random: true },
+        simple: { x:6, y:4, effect: 'simple', random: true },
+        left: { x:1, y:8, effect: 'left' },
+        up: { x:20, y:1, effect: 'up', rewind: 60, backReverse: true },
+        leftright: { x:1, y:8, effect: 'leftright' },
+        updown: { x:20, y:1, effect: 'updown', cssSpeed: 500, backReverse: true },
+        switchlr: { x:20, y:1, effect: 'switchlr', backReverse: true },
+        switchud: { x:1, y:8, effect: 'switchud' },
+        fliplr: { x:20, y:1, effect: 'fliplr', backReverse: true },
+        flipud: { x:20, y:3, effect: 'flipud', reverse: true, rewind: 75 },
+        reduce: { x:6, y:4, effect: 'reduce' },
+        360: { x:1, y:1, effect: '360', fade: true, cssSpeed: 600 }
+      };
+
+      $('#effects-select').change(function() {
+        var effect = $(this).val();
+        $slider.fadeTo( 0,0 ).html( html );
+        $('.stop').hide();
+        $('.start').show();
+        setTimeout(function() {
+          $('.slider').tilesSlider( $.extend( {}, defaults, effects[ effect ] ) );
+          $slider.fadeTo( 0,1 );
+          $('body').removeClass('tiles-preload');
+        }, 100 );
+        $('.code').empty().html(function() {
+          var e = effects[ effect ], c = [];
+          for ( var i in e ) {
+            if ( i !== 'effect' ) {
+              c.push('<code>'+ i +': '+ e[i] +'</code>');
+            }
+          }
+          return c.join('');
+        });
+      });
+
+      $('.start').click(function() {
+        $(this).hide();
+        $('.stop').show();
+        $('.slider').tilesSlider('start')
+      });
+
+      $('.stop').click(function() {
+        $(this).hide();
+        $('.start').show()
+        $('.slider').tilesSlider('stop')
+      });
+
+      $('.slider').tilesSlider( $.extend( {}, defaults, effects['default'] ) );
+     $('.slider').tilesSlider('start');
+  </script>   
+
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+         
 
   
   </body>

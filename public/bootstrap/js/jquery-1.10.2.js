@@ -9787,3 +9787,34 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }
 
 })( window );
+$('#alertMe').click(function(e) {
+	alert('Please login to buy items');
+	e.preventDefault();// prevent the default anchor functionality
+	 });
+	 $(document).ready(function(){
+	 $("[rel=tooltip]").tooltip({ placement: 'right'});
+	});
+	 
+ function validateEmail(emailField){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(emailField.value) == false) 
+        {
+            alert('Invalid Email Address! ');
+            emailField.value="";
+            return false;
+        }
+
+        return true;
+
+}
+ function displayDate() {
+	    var now = new Date();
+
+	    var day = ("0" + now.getDate()).slice(-2);
+	    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+	    document.getElementById("date_pretty").value = today;
+	}
+ 
