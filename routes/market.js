@@ -585,6 +585,7 @@ exports.staffpicks= function(req, res){
 		var data = {title:' Today at the market'};
 		data.itemimages = [];
 		data.itemnames = [];
+		data.displaynames=[];
 		
 		for (var item in doc) {
 			console.log(doc);
@@ -592,6 +593,9 @@ exports.staffpicks= function(req, res){
 				console.log(attachmentName);
 				data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
 				data.itemnames.push(doc[item].id);
+				data.displaynames.push(doc[item].value.itemname);
+				console.log("displaypush:"+doc[item].value.itemname);
+			
 				itemcount = itemcount+1;
 			}
 		}
@@ -626,6 +630,7 @@ exports.myproduces= function(req, res){
 			console.log("I am in view of farmeritem");
 			data.itemimages = [];
 			data.itemids = [];
+			data.displaynames=[];
 			for (var item in doc) {
 				console.log("doc[item].value.idfarmer:"+doc[item].value.idfarmer);
 				console.log("req.session.cfid:"+req.session.cfid);
@@ -639,6 +644,8 @@ exports.myproduces= function(req, res){
 						console.log("attachmentname:"+attachmentName);
 						data.itemimages.push('http://localhost:5984/farmersmarket/'+doc[item].id+'/'+attachmentName);
 						data.itemids.push(doc[item].id);
+						data.displaynames.push(doc[item].value.itemname);
+						console.log("displaypush:"+doc[item].value.itemname);
 						itemcount = itemcount+1;
 					}
 				}//if
@@ -766,15 +773,19 @@ exports.buy_item=function(req, res) {
 			sys.puts(doc);
 			console.log("itemid"+ itemid);
 			console.log("itemquantity"+ itemquant);
+			console.log("itemname"+itemname);
 			var unitprice = doc.unitprice;
 			console.log("unitprice" + unitprice);
 			var totalprice=itemquant * unitprice;
 			console.log("totalprice"+ totalprice);
+			var itemname=doc.itemname;
+			console.log("itemname:"+ itemname);
 			var buydata = {title:'Farmers Market - Invoice', 
 				'itemid':itemid,
 				'unitprice':unitprice,
 				'itemquant':itemquant,
-				'totalprice':totalprice
+				'totalprice':totalprice,
+				'itemname':itemname
 			};
 			res.render('invoice',{title: ' Farmers Market',buydata:buydata,session:req.session});
 
