@@ -39,7 +39,7 @@
     
   </head>
   <body>
-    <p>Join our <%= title %></p>
+    <p>Our <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -51,8 +51,8 @@
 	       <a class="brand" href="/">Virtual Farmers Market</a>
 	         <div class="nav-collapse collapse">
 	           <ul class="nav">
-                  <li class="active"><a href="/welcomefarmer">Home</a></li>
-                  <li><a href="/myproduces">My Produces</a></li>
+                  <li><a href="/welcomefarmer">Home</a></li>
+                  <li class="active"><a href="/myproduces">My Produces</a></li>
                   <li><a href="/uploaditems">Sell</a></li>
  
     
@@ -89,10 +89,10 @@
         <div class="span2">           
             <ul class="nav nav-list">
                 <li class="nav-header">Feast of Artisans</li>
-                  <li class="active"><a href="/welcomefarmer">Home</a></li>
+                  <li><a href="/welcomefarmer">Home</a></li>
 
                 <li class="divider"></li>    
-                <li><a href="/myproduces">My Produces</a></li>
+                <li class="active"><a href="/myproduces">My Produces</a></li>
     
                 <li><a href="/uploaditems">Upload items</a></li>                
 
@@ -101,8 +101,8 @@
             </ul>
         </div>
         <div class="span10">
-          <h2>Welcome to our Farmers Market</h2>          
-          <b>Our staff picks <b>
+      
+          <b>My Produces <b>
          <ul class="thumbnails">
             <h2 <%= data.title %> /h2>          
             <% var rows = data.itemcount/3 %>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+    
+  </head>
+  <body>
+     <p> <%= title %></p>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+	      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	       </button>
+	       <a class="brand" href="/staffpicks">Virtual Farmers Market</a>
+	         <div class="nav-collapse collapse">
+	            <ul class="nav">
+	              <li class="active"><a href="/">Home</a></li>
+	              
+	              <li><a id="alertMe" href="#">Buy</a></li>
+	              <li class = "pull-right"> <a href="/logout">logout</a></li>
+	            </ul>
+	            
+	          </div><!--/.nav-collapse -->
+
+	        </div><!--/.container -->
+	      </div><!--/.navbar-inner -->
+	    </div><!--/.navbar navbar-inverse navbar-fixed-top -->
+	    
+	
+    <div class="container">	
+      
+      <div class="page-header">
+	    <img src="/bootstrap/img/heading-background1.jpg"/>
+      </div><!--/.pageheader -->
+	
+	
+	  <!-- Example row of columns -->
+	     
+	     
+      <div class="row">
+        <div class="span2">      	  
+            <ul class="nav nav-list">
+            <li class="nav-header">What we are?</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Create Account</a></li>
+ 
+            <li class="divider"></li> 
+            <li><a href="#">Share</a></li>       
+          </ul>
+        </div><!--/.span2 -->
+        <div class="span10">
+          <h2>Today at the market....</h2>          
+         <ul class="thumbnails">
+            <h2 <%= title %> /h2>		    
+		    <% var rows = itemcount/3 %>
+		    <table>
+		    <% for(var i=0; i<rows; i++) { %>
+		        <tr>
+		    	<% for(var j=0; j<3; j++) { %>
+		    		<% if ((i*3+j) < itemcount) { %>
+		        		<td>
+		 	            <a href="/staffpickitem/<%= itemnames[i*3+j] %>">
+		                  <img src=<%= itemimages[i*3+j] %> />
+		                </a>
+						<h4> <%= itemnames[i*3+j] %> </h4>		                
+		                </td>
+		    		<% } %>
+		    	<% } %>
+		        </tr>
+		    <% } %>
+		    </table>
+		    
+	    </div><!--/.span10 -->       
+      </div><!--/.row -->      
+       
+
+      <hr>
+
+      <footer>
+        <p>© SJSU Fall 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+  
+  </body>
+</html>

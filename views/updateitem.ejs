@@ -11,6 +11,7 @@
 
     <!-- Le styles -->
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap/css/jquery.tiles.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -27,90 +28,95 @@
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://getbootstrap.com/2.3.2/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://getbootstrap.com/2.3.2/assets/ico/favicon.png">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>    
+    <script src="/bootstrap/js/jquery.tiles.min.js"></script>
+    <script src="/bootstrap/js/jquery.snow.min.js"></script>
+    <script src="/bootstrap/js/jquery.contenthover.js"></script>
     
   </head>
   <body>
-    <p>Welcome to <%= title %></p>
+    <p>Join our <%= title %></p>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
 	      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="brand" href="#">Virtual Farmers Market</a>
-	      <div class="nav-collapse collapse">
-	        <ul class="nav">
-	          <li class="active"><a href="/index">Home</a></li>
-	          <li><a href="#about">Buy</a></li>
-	          <li><a href="#about">Sell</a></li>
-	          <li><a href="#about">About</a></li>
-	          <li><a href="#contact">Contact</a></li>
-	          <li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-	            <ul class="dropdown-menu">
-	              <li><a href="#">Action</a></li>
-	              <li><a href="#">Another action</a></li>
-	              <li><a href="#">Something else here</a></li>
-	              <li class="divider"></li>
-	              <li class="nav-header">Nav header</li>
-	              <li><a href="#">Separated link</a></li>
-	              <li><a href="#">One more separated link</a></li>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	       </button>
+	       <a class="brand" href="/">Virtual Farmers Market</a>
+	         <div class="nav-collapse collapse">
+	           <ul class="nav">
+                  <li class="active"><a href="/welcomefarmer">Home</a></li>
+                  <li><a href="/myproduces">My Produces</a></li>
+ 
+    
+                  <li><a href="/welcomefarmer" rel="tooltip" title=HELLO" id="blah"><%= session.username %><%= session.lastname %></a></li>
+                  <li class = "pull-right"> <a href="/logout">logout</a></li>
+
 	            </ul>
-	          </li>
-	        </ul>
-	        <form class="navbar-form pull-right">
-	          <input class="span2" placeholder="Email" type="text">
-	          <input class="span2" placeholder="Password" type="password">
-	          <button type="submit" class="btn">Sign in</button>
-	        </form>
-	      </div><!--/.nav-collapse -->
-	    </div><!--/.container -->
-	  </div><!--/.navbar-inner -->
-	</div><!--/.navbar navbar-inverse navbar-fixed-top -->
-	    
+
+	          </div><!--/.nav-collapse -->
+
+	        </div>
+	      </div>
+	    </div>
+
 	
     <div class="container">	      
-      <div class="page-header">
-	    <img src="/bootstrap/img/heading-background1.jpg"/>
-      </div><!--/.pageheader -->
-	  <!-- Example row of columns -->   
-    
+      <div class="page-header" style="height:468px;">
+	<div class="slider-wrap" style="max-height:468px;" >
+		<div class="slider" style="max-height:468px;">
+    		<img src="/bootstrap/img/IMG4.jpg"  />
+			<img src="/bootstrap/img/IMG5.jpg"/>
+    		<img src="/bootstrap/img/IMG3.jpg"/>
+			<img src="/bootstrap/img/IMG2.jpg"/>
+			<img src="/bootstrap/img/IMG1.jpg"/>
+			<img src="/bootstrap/img/IMG6.jpg"/>
+		</div>
+	</div>
+      </div>	
+	
+	  <!-- Example row of columns -->
+	     
+	     
       <div class="row">
-        <div class="span2">      	  
-          <ul class="nav nav-list">
-            <li class="nav-header">What we are?</li>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Create Account</a></li>
-            <li class="divider"></li>    
-            <li class="active"><a href="/produces">Our Produces</a></li>
-            <li><a href="/farmers">Our Farmers</a></li>
-            <li class="divider"></li> 
-            <li><a href="#">Share</a></li>       
-          </ul>
-        </div><!--/.span2 -->
+        <div class="span1">           
+            <ul class="nav nav-list">
+                <li class="nav-header">Feast of Artisans</li>
+                  <li class="active"><a href="/welcomefarmer">Home</a></li>
+
+                <li class="divider"></li>    
+                <li><a href="/myproduces">My Produces</a></li>
+    
+                <li><a href="/uploaditems">Upload items</a></li>                
+
+                <li class="divider"></li> 
+                <li><a href="/logout">Logout</a></li>       
+            </ul>
+        </div>
         <div class="span10">
           <form id="signup" class="form-horizontal" method="post" enctype="multipart/form-data" action="/myproduces/updateitem">
 
-			<table class="table"> 
-		        <thead>
-		        		<tr>		        			
-			    			<th>Enter item details:</th>			    				
-		    			 </tr>       	
-		        </thead>			
-		        <tbody>	
+            <table class="table"> 
+                <thead>
+                        <tr>                            
+                            <th>Enter item details:</th>                                
+                         </tr>          
+                </thead>            
+                <tbody> 
                   <tr>  
                       <td colspan="2">
                           <img src=<%= itemimage %> />
-                          <h4> <%= itemid %> <h4> 
+                          <h4> <%= data.itemid %> <h4> 
                       </td>  
                               
                   </tr>         
-	          		<tr> 
+                    <tr> 
                          <td>  
                             <div class="control-group">
                               <label class="control-label">change picture ?</label>
@@ -119,183 +125,221 @@
                                     <span class="add-on"><i class="icon-envelope"></i></span>
                                     <input type="file" class="input-small" id="email" name="logoImage" value= <%=itemimage%> >
                                     <input type="hidden" name="itemimage1" value="<%=itemimage%>">
-                                    <input type="hidden" name="itemid1" value="<%=itemid%>">
+                                    <input type="hidden" name="itemid1" value="<%=data.itemid%>">
                                   </div>
                                 </div>
                             </div>  
                          </td>
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">Item Name</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="itemname" value= <%=itemname%> >
-								     <input type="hidden" name="itemimage1" value="<%=itemimage%>">
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">Item Name</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="itemname" value= <%=data.itemname%> >
+                                     <input type="hidden" name="itemimage1" value="<%=itemimage%>">
                                     
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
 
-					</tr>  
+                    </tr>  
 
-	          		 
-	          		<tr> 
-	          			<td> 	
-						    <div class="control-group">
-					          <label class="control-label">Item Description</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname"  name="description" value= <%=description%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>						  
-						</tr> 
-	          		<tr> 
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">Item Type</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="itemtype" value= <%=itemtype%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">Farm Name</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="farmname" value= <%=farmname%> >
-						          </div>
-							    </div> 
-						    </div>
-						 </td>
-					</tr>
-	          		<tr> 
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">Per Pack</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="perpack" value= <%=perpack%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">Unit Price</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="unitprice" value= <%=unitprice%> >
-						          </div>
-							    </div> 
-						    </div>
-						 </td>
-					</tr>
-					<tr> 
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">In Stock</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="instock" value= <%=instock%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">Tag List</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="taglist" value= <%=taglist%> >
-						          </div>
-							    </div> 
-						    </div>
-						 </td>
-					</tr>
-	          		<tr> 
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">Add Date</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="adddate" value= <%=adddate%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">BestBy</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="bestby"  value= <%=bestby%> >
-						          </div>
-							    </div> 
-						    </div>
-						 </td>
-					</tr>  
-	          		<tr> 
-	          			<td> 		        	      
-						    <div class="control-group">
-					          <label class="control-label">VideoLink1</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="videolink1" value= <%=videolink1%> >
-						          </div>
-							    </div> 
-						    </div>
-						  </td>
-						 
-						 <td>  
-						    <div class="control-group">
-					          <label class="control-label">VideoLink1</label>
-						        <div class="controls">
-							      <div class="input-prepend">
-							        <span class="add-on"><i class="icon-envelope"></i></span>
-								    <input type="text" class="input-small" id="fname" name="videolink2" value= <%=videolink2%> >
-						          </div>
-							    </div> 
-						    </div>
-						 </td>						 
-					</tr> 
-	          		<tr> 
-	          			<td> 
-						    <div class="control-group">
-						      <label class="control-label"></label>
-					          <div class="controls">
-					            <button type="submit" class="btn btn-success" >UpdateItem</button>
-					          </div>
-					        </div>						  
-						 </td>	
-					</tr> 
-			 	</tbody>
-		     </table>
-	      </form>
-	    </div><!--/.span10 -->       
-      </div><!--/.row -->    
+                     
+                    <tr> 
+                        <td>    
+                            <div class="control-group">
+                              <label class="control-label">Item Description</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname"  name="description" value= <%=data.description%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>                       
+                        </tr> 
+                    <tr> 
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">Item Type</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="itemtype" value= <%=data.itemtype%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">Farm Name</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="farmname" value= <%=data.farmname%> >
+                                  </div>
+                                </div> 
+                            </div>
+                         </td>
+                    </tr>
+                    <tr> 
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">Per Pack</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="perpack" value= <%=data.perpack%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">Unit Price</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="unitprice" value= <%=data.unitprice%> >
+                                  </div>
+                                </div> 
+                            </div>
+                         </td>
+                    </tr>
+                    <tr> 
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">In Stock</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="instock" value= <%=data.instock%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">Tag List</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="taglist" value= <%=data.taglist%> >
+                                  </div>
+                                </div> 
+                            </div>
+                         </td>
+                    </tr>
+                    <tr> 
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">Add Date</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="adddate" value= <%=data.adddate%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">BestBy</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="bestby"  value= <%=data.bestby%> >
+                                  </div>
+                                </div> 
+                            </div>
+                         </td>
+                    </tr>  
+                    <tr> 
+                        <td>                          
+                            <div class="control-group">
+                              <label class="control-label">VideoLink1</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="videolink1" value= <%=data.videolink1%> >
+                                  </div>
+                                </div> 
+                            </div>
+                          </td>
+                         
+                         <td>  
+                            <div class="control-group">
+                              <label class="control-label">VideoLink1</label>
+                                <div class="controls">
+                                  <div class="input-prepend">
+                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                    <input type="text" class="input-small" id="fname" name="videolink2" value= <%=data.videolink2%> >
+                                  </div>
+                                </div> 
+                            </div>
+                         </td>                       
+                    </tr> 
+                    <tr> 
+                        <td> 
+                            <div class="control-group">
+                              <label class="control-label"></label>
+                              <div class="controls">
+                                <button type="submit" class="btn btn-success" >UpdateItem</button>
+                              </div>
+                            </div>                        
+                         </td>  
+                    </tr> 
+                </tbody>
+             </table>
+          </form>
+          
+       </div><!-- .class span10 -->
+        <div class="span1">
+                
+                <a href="https://twitter.com/VFM_SJSU" class="twitter-follow-button"
+                data-show-count="false" data-lang="en" data-size="large">
+                Follow @VFM_SJSU</a>
 
+                <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+                    if(!d.getElementById(id)){js=d.createElement(s);
+                    js.id=id;
+                    js.src="//platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                </script>
+                
+                <br> <br>
+                
+                <a class="twitter-timeline" 
+                 href="https://twitter.com/search?q=%23vfm_sjsu"
+                 data-widget-id="398569442738581504">Tweets about "#vfm_sjsu"</a>
+                <script>
+                    !function(d,s,id){
+                    var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                    if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src=p+"://platform.twitter.com/widgets.js";
+                    fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                </script>
+ 
+          <hr>           
+ 
+         
+            
+	    </div><!-- .class span4 -->
+         
+          
+            
+	  </div><!-- .class== row -->
+       
       <hr>
 
       <footer>
@@ -306,20 +350,96 @@
 
     <!-- Le javascript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Bootstrap,%20from%20Twitter_files/jquery.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-transition.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-alert.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-modal.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-dropdown.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-scrollspy.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tab.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-tooltip.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-popover.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-button.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-collapse.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-carousel.js"></script>
-    <script src="Bootstrap,%20from%20Twitter_files/bootstrap-typeahead.js"></script>
+ 
+ <script>
+	$(document).ready(function($) {
+	$('body').snowing(options);
+	});
+
+	//possible parameters and their default values:
+	var options = {
+	minSize : 30, //minimum size of single flake
+	maxSize : 60, //maximum size of single flake
+	minOpacity : 0.3, //minimum opacity of single flake (0-1 values range)
+	maxOpacity : 1, //maximum opacity of single flake (0-1 values range)
+	intensity : 10, //intensity of snowing (higher -> more intense)
+	meltingTime : 5, //time after which flakes disappear (higher -> later)
+	flakeColors : ["#AAFFAA", "#AAAAFF", "#CCCCFF"], //array of possible colors that flakes randomly take
+	flakeChars : ['&#10052;', '&#10053;', '&#10054;'] //array of possible unicode characters codes that flakes randomly take
+	};
+</script>    
+<script>
+
+      var $slider = $('.slider-wrap');
+      var html = $slider.html();
+
+      // Options
+
+      var defaults = {
+        thumbSize: 20,
+        onSlideshowEnd: function(){ $('.stop, .start').toggle() }
+      };
+
+      var effects = {
+        'default': { x:6, y:4, random: true },
+        simple: { x:6, y:4, effect: 'simple', random: true },
+        left: { x:1, y:8, effect: 'left' },
+        up: { x:20, y:1, effect: 'up', rewind: 60, backReverse: true },
+        leftright: { x:1, y:8, effect: 'leftright' },
+        updown: { x:20, y:1, effect: 'updown', cssSpeed: 500, backReverse: true },
+        switchlr: { x:20, y:1, effect: 'switchlr', backReverse: true },
+        switchud: { x:1, y:8, effect: 'switchud' },
+        fliplr: { x:20, y:1, effect: 'fliplr', backReverse: true },
+        flipud: { x:20, y:3, effect: 'flipud', reverse: true, rewind: 75 },
+        reduce: { x:6, y:4, effect: 'reduce' },
+        360: { x:1, y:1, effect: '360', fade: true, cssSpeed: 600 }
+      };
+
+      $('#effects-select').change(function() {
+        var effect = $(this).val();
+        $slider.fadeTo( 0,0 ).html( html );
+        $('.stop').hide();
+        $('.start').show();
+        setTimeout(function() {
+          $('.slider').tilesSlider( $.extend( {}, defaults, effects[ effect ] ) );
+          $slider.fadeTo( 0,1 );
+          $('body').removeClass('tiles-preload');
+        }, 100 );
+        $('.code').empty().html(function() {
+          var e = effects[ effect ], c = [];
+          for ( var i in e ) {
+            if ( i !== 'effect' ) {
+              c.push('<code>'+ i +': '+ e[i] +'</code>');
+            }
+          }
+          return c.join('');
+        });
+      });
+
+      $('.start').click(function() {
+        $(this).hide();
+        $('.stop').show();
+        $('.slider').tilesSlider('start')
+      });
+
+      $('.stop').click(function() {
+        $(this).hide();
+        $('.start').show()
+        $('.slider').tilesSlider('stop')
+      });
+
+      $('.slider').tilesSlider( $.extend( {}, defaults, effects['default'] ) );
+     $('.slider').tilesSlider('start');
+  </script>   
+
+   <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/bootstrap/js/jquery-1.10.2.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+         
+
+  
+
+         
 
   
   </body>
